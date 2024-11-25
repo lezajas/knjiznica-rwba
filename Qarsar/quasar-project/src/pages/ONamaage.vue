@@ -1,0 +1,31 @@
+<style lang="sass" scoped>
+.my-card
+  width: 100%
+</style>
+
+<template>
+  <q-page padding>
+    <q-card dark bordered class="bg-grey-9 my-card">
+      <q-card-section class="text-h4 text-justify">
+        <div class="text-h3 text-weight-bolder absolute-top text-center">O
+          nama</div>
+      </q-card-section>
+      <q-card-section class="text-body1 ">
+        {{ o_nama }}
+        <q-img src=" https://www.rijeka.hr/wp-content/uploads/2023/12/Nova-knji%C5%BEnica-4-901x600.jpg ">
+        </q-img>
+      </q-card-section>
+    </q-card>
+  </q-page>
+
+</template>
+
+<script>
+export default {
+  setup() {
+    return {
+      o_nama: "Gradska knjižnica Rijeka središnja je narodna knjižnica grada Rijeke i matična knjižnica za narodne i školske knjižnice Primorsko-goranske županije. Ona je informacijsko, obrazovno, kulturno, komunikacijsko i socijalno središte Rijeke i okolice usmjereno prema novom stvaralaštvu, održivom razvoju i kvaliteti razvoja zajednice i čitateljske kulture."
+    }
+  }
+}
+</script>

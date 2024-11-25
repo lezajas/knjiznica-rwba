@@ -1,6 +1,6 @@
-# Knjiznica (quasar-project)
+# Quasar App (quasar-project)
 
-projekt
+A Quasar Project
 
 ## Install the dependencies
 ```bash
@@ -20,6 +20,14 @@ quasar dev
 yarn lint
 # or
 npm run lint
+```
+
+
+### Format the files
+```bash
+yarn format
+# or
+npm run format
 ```
 
 
