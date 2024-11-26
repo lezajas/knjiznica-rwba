@@ -36,6 +36,14 @@ const rows = [
     slika: 4.0,
     stanje: "10",
   },
+  {
+    name: "Knjiga2",
+    ID_knjige: 2,
+    autor: "Autor2",
+    opis: "opis knjige2",
+    slika: 4.0,
+    stanje: "10",
+  },
 ];
 
 export default {
