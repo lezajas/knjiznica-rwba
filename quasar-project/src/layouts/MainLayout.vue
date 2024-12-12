@@ -50,6 +50,12 @@ const linksList = [
     link: '#/popisKnjiga'
   },
   {
+    title: 'Popis svih  baza knjiga',
+    caption: 'popis svih knjiga u bazi',
+    icon: 'library_books',
+    link: '#/baza'
+  },
+  {
     title: 'Pretraživanje',
     caption: 'pretraživanje',
     icon: 'search',
