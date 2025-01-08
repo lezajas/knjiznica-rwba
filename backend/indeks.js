@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 
 // Parser za podatke iz formi
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 const connection = mysql.createConnection({
     host: 'student.veleri.hr',
@@ -41,10 +42,13 @@ app.get("/api/knjiga", (request, response) => { // dohvaćanje svih knjiga
     // response.send("popis knjiga");
 });
 
-app.get("/api/knjige/:id", (request, response) => { //dohvaćanje knjige po id-u
-    const id = request.params.id; // request sa klijentse strane
-    response.send("jedna knjiga " + id);
-})
+app.get("/api/knjiga/:id", (request, response) => {
+    const id = request.params.id;
+    connection.query("SELECT * FROM knjiga WHERE id=?", [id], (error, results) => {
+        if (error) throw error;
+        response.send(results);
+    });
+});
 
 app.get("/api/knjiga/naslov/:naslov", (request, response) => {
     const naslov = request.params.naslov;
@@ -65,6 +69,16 @@ app.get("/api/knjiga/naslov/:naslov", (request, response) => {
     //response.send("Poslano" + data.id_knjiga);
 });
 */
+
+app.post("/api/unos_knjiga", (request, response) => {
+    const data = request.body;
+    knjiga = [[data.naslov, data.autor, data.opis, data.slika, data.stanje]]
+    connection.query("INSERT INTO knjiga (naslov, autor, opis, slika, stanje) VALUES ?", [knjiga], (error, results) => {
+        if (error) throw error;
+        response.send(results);
+    });
+    //response.send("Poslano" + data.id_knjiga);
+});
 
 
 app.listen(port, () => {

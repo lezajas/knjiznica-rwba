@@ -60,18 +60,19 @@ import { ref } from 'vue'
 import axios from 'axios';
 
 const style1 = {
-      fontSize:'18px'
-    };
+  fontSize: '18px'
+};
+
 const style2 = {
-      fontSize: '24px'
-    };
+  fontSize: '24px'
+};
 
 const columns = [
   {
-    name:'id',
-    label:'id',
-    field:'id',
-    align:'left',
+    name: 'id',
+    label: 'id',
+    field: 'id',
+    align: 'left',
     sortable: true,
     style: style1,
     headerStyle: style2
@@ -80,7 +81,7 @@ const columns = [
     name: 'naslov',
     label: 'naslov',
     field: 'naslov',
-    align:'left',
+    align: 'left',
     sortable: true,
     style: style1,
     headerStyle: style2
@@ -105,7 +106,7 @@ const columns = [
     name: 'slika',
     label: 'slika',
     field: 'slika',
-    align:'center',
+    align: 'center',
     style: style1,
     headerStyle: style2
   },
@@ -113,7 +114,7 @@ const columns = [
     name: 'stanje',
     label: 'stanje',
     field: 'stanje',
-    align:'center',
+    align: 'center',
     style: style1,
     headerStyle: style2
   }
@@ -121,30 +122,33 @@ const columns = [
 let books = ref([])
 
 export default {
-  setup () {
+  setup() {
+    const books = ref([]);
     return {
       columns,
       books,
       pagination: ref({
         rowsPerPage: 10
       }),
-    }
+    };
   },
 
   mounted() {
-    this.loadBooks()
+    this.loadBooks();
   },
+
   methods: {
     async loadBooks() {
-      await axios.get('http://localhost:3000/api/knjige/')
+      await axios.get('http://localhost:3000/api/knjiga/')
         .then(result => {
-          console.log(result.data.data)
-          this.books = result.data.data
-          console.log(this.books[0].id)
+          console.log(result.data); // Provjerite strukturu podataka
+          this.books = result.data; // Ako je odgovor direktno niz
+          // Ako je odgovor u formatu { data: [...] }
+          // this.books.value = result.data.data;
         })
         .catch(error => {
-          console.error(error)
-        })
+          console.error("Error loading books:", error);
+        });
     },
   }
 }
